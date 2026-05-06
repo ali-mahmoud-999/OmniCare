@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SiteSettings {
+  id                Int     @id @default(1)
+  primaryPhone      String
+  whatsappLink      String
+  supportEmail      String
+  officeAddressEn   String
+  officeAddressAr   String  @default("")
+  promoBannerTextEn String?
+  promoBannerTextAr String?
+  promoBannerActive Boolean @default(false)
+}
+
+model Booking {
+  id              String   @id @default(uuid())
+  clientName      String
+  phoneNumber     String
+  selectedService String
+  targetDistrict  String
+  specialRequests String?
+  status          String   @default("New") // New, In-Progress, Contacted, Cancelled
+  createdAt       DateTime @default(now())
+}
+
+model Service {
+  id            String @id @default(uuid())
+  titleEn       String
+  titleAr       String @default("")
+  descriptionEn String
+  descriptionAr String @default("")
+  iconLink      String // SVG link or identifier
+}
+
+model Testimonial {
+  id         String @id @default(uuid())
+  clientName String
+  feedbackEn String
+  feedbackAr String @default("")
+  areaEn     String
+  areaAr     String @default("")
+  rating     Int    @default(5)
+}
+
+model FAQ {
+  id         String @id @default(uuid())
+  questionEn String
+  questionAr String @default("")
+  answerEn   String
+  answerAr   String @default("")
+}
