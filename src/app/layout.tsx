@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Cairo } from "next/font/google";
 import { Providers } from "@/components/Providers";

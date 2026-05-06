@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { PrismaClient } from "@prisma/client"
 import { CalendarCheck, MessageSquare, HelpCircle, Briefcase, Database } from "lucide-react"
 import { seedDatabase } from "./actions"
