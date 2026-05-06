@@ -6,10 +6,10 @@ import { LandingPageUI } from "./LandingPageUI"
 const prisma = new PrismaClient()
 
 export default async function LandingPage() {
-  let settings = null;
-  let services = [];
-  let testimonials = [];
-  let faqs = [];
+  let settings: any = null;
+  let services: any[] = [];
+  let testimonials: any[] = [];
+  let faqs: any[] = [];
 
   try {
     const results = await Promise.all([
