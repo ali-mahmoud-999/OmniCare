@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Phone, Mail, MapPin, ChevronDown, Star, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, ChevronDown, Star, CheckCircle2, Menu, X } from "lucide-react";
 import { BookingForm } from "./BookingForm";
 import { useLanguage } from "@/components/LanguageProvider";
 import { translations } from "@/lib/translations";
@@ -9,6 +10,7 @@ import { translations } from "@/lib/translations";
 export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
   const { language, setLanguage, dir } = useLanguage();
   const t = translations[language];
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -26,6 +28,8 @@ export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
             <div className="flex items-center">
               <h1 className="text-3xl font-serif font-bold text-navy">{t.siteTitle}</h1>
             </div>
+            
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8 rtl:space-x-reverse text-sm font-medium text-gray-700">
               <a href="#services" className="hover:text-gold transition-colors">{t.nav.services}</a>
               <a href="#testimonials" className="hover:text-gold transition-colors">{t.nav.testimonials}</a>
@@ -40,8 +44,31 @@ export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
                 {language === "ar" ? "English" : "العربية"}
               </button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-4">
+              <button 
+                onClick={() => setLanguage(language === "ar" ? "en" : "ar")}
+                className="font-bold text-navy text-sm border border-gray-200 px-2 py-1 rounded"
+              >
+                {language === "ar" ? "EN" : "عربي"}
+              </button>
+              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-navy p-2">
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-4 shadow-lg absolute w-full">
+            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="block font-medium text-gray-700 hover:text-gold">{t.nav.services}</a>
+            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="block font-medium text-gray-700 hover:text-gold">{t.nav.testimonials}</a>
+            <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="block font-medium text-gray-700 hover:text-gold">{t.nav.faq}</a>
+            <a href="#book" onClick={() => setMobileMenuOpen(false)} className="block text-gold font-bold">{t.nav.bookNow}</a>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
