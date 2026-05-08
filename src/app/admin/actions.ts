@@ -127,9 +127,7 @@ export async function seedDatabase() {
 
     revalidatePath("/");
     revalidatePath("/admin");
-    return { success: true };
   } catch (error) {
     console.error("Failed to seed database:", error);
-    return { success: false, error: "Database connection failed. Please check your Supabase Pooler URL." };
   }
 }
