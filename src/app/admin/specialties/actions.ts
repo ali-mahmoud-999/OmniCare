@@ -35,6 +35,21 @@ export async function createSpecialty(data: { titleEn: string; titleAr: string; 
   }
 }
 
+export async function updateSpecialty(id: string, data: { titleEn: string; titleAr: string; descriptionEn: string; descriptionAr: string; imageUrl?: string; }) {
+  try {
+    await prisma.specialty.update({
+      where: { id },
+      data,
+    });
+    revalidatePath("/admin/specialties");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update specialty:", error);
+    return { success: false, error: "Database error" };
+  }
+}
+
 export async function deleteSpecialty(id: string) {
   try {
     await prisma.specialty.delete({ where: { id } });

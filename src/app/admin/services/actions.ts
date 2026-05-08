@@ -38,6 +38,21 @@ export async function createService(data: { titleEn: string; titleAr: string; de
   }
 }
 
+export async function updateService(id: string, data: { titleEn: string; titleAr: string; descriptionEn: string; descriptionAr: string; iconLink: string; imageUrl: string; featuresEn: string[]; featuresAr: string[]; }) {
+  try {
+    await prisma.service.update({
+      where: { id },
+      data,
+    });
+    revalidatePath("/admin/services");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update service:", error);
+    return { success: false, error: "Database error" };
+  }
+}
+
 export async function deleteService(id: string) {
   try {
     await prisma.service.delete({ where: { id } });
