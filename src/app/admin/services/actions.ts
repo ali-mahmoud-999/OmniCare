@@ -24,13 +24,25 @@ export async function getServices() {
 }
 
 export async function createService(data: { titleEn: string; titleAr: string; descriptionEn: string; descriptionAr: string; iconLink: string }) {
-  await prisma.service.create({ data });
-  revalidatePath("/admin/services");
-  revalidatePath("/");
+  try {
+    await prisma.service.create({ data });
+    revalidatePath("/admin/services");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to create service:", error);
+    return { success: false, error: "Database error" };
+  }
 }
 
 export async function deleteService(id: string) {
-  await prisma.service.delete({ where: { id } });
-  revalidatePath("/admin/services");
-  revalidatePath("/");
+  try {
+    await prisma.service.delete({ where: { id } });
+    revalidatePath("/admin/services");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete service:", error);
+    return { success: false, error: "Database error" };
+  }
 }
