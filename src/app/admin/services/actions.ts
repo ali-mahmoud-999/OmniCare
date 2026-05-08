@@ -14,7 +14,10 @@ export async function getServices() {
         titleAr: true,
         descriptionEn: true,
         descriptionAr: true,
-        iconLink: true
+        iconLink: true,
+        imageUrl: true,
+        featuresEn: true,
+        featuresAr: true
       }
     });
   } catch (error) {
@@ -23,7 +26,7 @@ export async function getServices() {
   }
 }
 
-export async function createService(data: { titleEn: string; titleAr: string; descriptionEn: string; descriptionAr: string; iconLink: string }) {
+export async function createService(data: { titleEn: string; titleAr: string; descriptionEn: string; descriptionAr: string; iconLink: string; imageUrl?: string; featuresEn?: string[]; featuresAr?: string[] }) {
   try {
     await prisma.service.create({ data });
     revalidatePath("/admin/services");

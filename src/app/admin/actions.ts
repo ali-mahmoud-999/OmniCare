@@ -31,6 +31,9 @@ export async function seedDatabase() {
         descriptionEn: "24/7 world-class nursing care in the comfort of your home.",
         descriptionAr: "رعاية تمريضية عالمية المستوى على مدار الساعة في راحة منزلك.",
         iconLink: "Stethoscope",
+        imageUrl: "https://images.unsplash.com/photo-1576091160550-2173ff9e5ee4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        featuresEn: ["Post-surgical care", "Vital signs monitoring", "Wound care", "Medication management"],
+        featuresAr: ["رعاية ما بعد الجراحة", "مراقبة العلامات الحيوية", "العناية بالجروح", "إدارة الأدوية"],
       },
       {
         titleEn: "Elite Nannies",
@@ -38,6 +41,9 @@ export async function seedDatabase() {
         descriptionEn: "Trusted, certified, and compassionate nannies for your children.",
         descriptionAr: "مربيات موثوقات ومعتمدات ورحيمات لأطفالك.",
         iconLink: "Baby",
+        imageUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        featuresEn: ["Educational support", "Infant & Toddler care", "Interactive activities", "Nutritional meal prep"],
+        featuresAr: ["دعم تعليمي", "رعاية الرضع والأطفال الصغار", "أنشطة تفاعلية", "إعداد وجبات مغذية"],
       },
       {
         titleEn: "Luxury Housekeeping",
@@ -45,6 +51,9 @@ export async function seedDatabase() {
         descriptionEn: "Immaculate cleaning and property management with absolute discretion.",
         descriptionAr: "تنظيف وإدارة ممتلكات لا تشوبها شائبة مع تقدير مطلق.",
         iconLink: "Sparkles",
+        imageUrl: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        featuresEn: ["Deep sanitization", "Luxury organizing", "Wardrobe management", "Event preparation"],
+        featuresAr: ["تعقيم عميق", "تنظيم فاخر", "إدارة خزانة الملابس", "تجهيز للمناسبات"],
       },
     ];
 
@@ -52,7 +61,12 @@ export async function seedDatabase() {
       const existingService = await prisma.service.findFirst({
         where: { titleEn: service.titleEn }
       });
-      if (!existingService) {
+      if (existingService) {
+        await prisma.service.update({
+          where: { id: existingService.id },
+          data: service
+        });
+      } else {
         await prisma.service.create({ data: service });
       }
     }
