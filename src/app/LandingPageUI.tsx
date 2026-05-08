@@ -197,7 +197,7 @@ export function LandingPageUI({ settings, services, specialties, testimonials, f
                     <p className="text-[#5176A6] leading-relaxed mb-6 flex-grow">{description}</p>
                     
                     <a href="#book" className="mt-auto inline-block border-2 border-navy text-navy font-bold rounded hover:bg-navy hover:text-white transition-colors px-6 py-2 w-max mx-auto">
-                      Book Service
+                      {t.nav.bookNow}
                     </a>
                   </div>
                 </motion.div>
@@ -218,9 +218,9 @@ export function LandingPageUI({ settings, services, specialties, testimonials, f
               variants={fadeIn}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-navy mb-6">التخصصات</h2>
-              <p className="text-gray-500 max-w-4xl mx-auto leading-relaxed text-lg" dir="rtl">
-                خدمات الزيارات الطبية المتخصصة داخل المنزل من خلال نخبة من الأطباء والاستشاريين في عدد من أهم التخصصات الطبية، وذلك لتقديم تشخيص دقيق ومتابعة طبية مهنية دون الحاجة لانتقال المريض إلى المستشفى، بما يضمن حصول المريض على رعاية طبية متخصصة في بيئة آمنة ومريحة.
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-navy mb-6">{t.specialties?.title || "Specialties"}</h2>
+              <p className="text-gray-500 max-w-4xl mx-auto leading-relaxed text-lg" dir={dir}>
+                {t.specialties?.description || ""}
               </p>
             </motion.div>
             
