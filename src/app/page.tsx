@@ -14,7 +14,7 @@ export default async function LandingPage() {
   try {
     settings = await prisma.siteSettings.findUnique({ 
       where: { id: 1 },
-      select: { id: true, primaryPhone: true, whatsappLink: true, supportEmail: true, officeAddressEn: true, officeAddressAr: true, promoBannerTextEn: true, promoBannerTextAr: true, promoBannerActive: true }
+      select: { id: true, primaryPhone: true, whatsappLink: true, facebookLink: true, supportEmail: true, officeAddressEn: true, officeAddressAr: true, promoBannerTextEn: true, promoBannerTextAr: true, promoBannerActive: true }
     });
   } catch (e) { console.error("Settings fetch error:", e); }
 

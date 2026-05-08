@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mail, MapPin, ChevronDown, Star, CheckCircle2, Menu, X, Shield, Heart } from "lucide-react";
+import { Phone, Mail, MapPin, ChevronDown, Star, CheckCircle2, Menu, X, Shield, Heart, Facebook } from "lucide-react";
 import { BookingForm } from "./BookingForm";
 import { useLanguage } from "@/components/LanguageProvider";
 import { translations } from "@/lib/translations";
 
-const fadeIn = {
+const fadeIn: any = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -322,18 +322,31 @@ export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button */}
-      {settings?.whatsappLink && (
-        <a 
-          href={settings.whatsappLink} 
-          target="_blank" 
-          rel="noreferrer"
-          className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
-        >
-          <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-75"></span>
-          <Phone className="w-8 h-8 relative z-10" />
-        </a>
-      )}
+      {/* Floating Buttons Container */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+        {settings?.facebookLink && (
+          <a 
+            href={settings.facebookLink} 
+            target="_blank" 
+            rel="noreferrer"
+            className="bg-[#1877F2] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
+          >
+            <Facebook className="w-8 h-8 relative z-10" />
+          </a>
+        )}
+        
+        {settings?.whatsappLink && (
+          <a 
+            href={settings.whatsappLink} 
+            target="_blank" 
+            rel="noreferrer"
+            className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group relative"
+          >
+            <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-75"></span>
+            <Phone className="w-8 h-8 relative z-10" />
+          </a>
+        )}
+      </div>
     </div>
   );
 }

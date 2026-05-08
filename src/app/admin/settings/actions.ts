@@ -12,6 +12,7 @@ export async function getSettings() {
         id: true,
         primaryPhone: true,
         whatsappLink: true,
+        facebookLink: true,
         supportEmail: true,
         officeAddressEn: true,
         officeAddressAr: true,
@@ -25,6 +26,7 @@ export async function getSettings() {
         data: {
           primaryPhone: "+20 123 456 7890",
           whatsappLink: "https://wa.me/201234567890",
+          facebookLink: "https://facebook.com",
           supportEmail: "info@omnicare-eg.com",
           officeAddressEn: "Cairo, Egypt",
           officeAddressAr: "القاهرة، مصر",
@@ -52,6 +54,7 @@ export async function saveSettings(data: any) {
         data: {
           primaryPhone: data.primaryPhone,
           whatsappLink: data.whatsappLink,
+          facebookLink: data.facebookLink,
           supportEmail: data.supportEmail,
           officeAddressEn: data.officeAddressEn,
           officeAddressAr: data.officeAddressAr,

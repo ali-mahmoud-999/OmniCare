@@ -18,6 +18,7 @@ model SiteSettings {
   promoBannerTextEn String?
   promoBannerTextAr String?
   promoBannerActive Boolean @default(false)
+  facebookLink      String?
 }
 
 model Booking {
