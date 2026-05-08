@@ -18,6 +18,10 @@ export const translations = {
     services: {
       title: "Our Core Services"
     },
+    specialties: {
+      title: "Medical Specialties",
+      description: "Specialized at-home medical visits conducted by an elite group of doctors and consultants across major medical specialties. We provide accurate diagnostics and professional medical monitoring without the need for hospital transfers, ensuring patients receive specialized care in a safe and comfortable environment."
+    },
     booking: {
       title: "Book a Premium Service",
       subtitle: "Fill out the form below and our dedicated concierge will contact you shortly to finalize your bespoke arrangement.",
@@ -66,6 +70,10 @@ export const translations = {
     },
     services: {
       title: "خدماتنا الأساسية"
+    },
+    specialties: {
+      title: "التخصصات",
+      description: "خدمات الزيارات الطبية المتخصصة داخل المنزل من خلال نخبة من الأطباء والاستشاريين في عدد من أهم التخصصات الطبية، وذلك لتقديم تشخيص دقيق ومتابعة طبية مهنية دون الحاجة لانتقال المريض إلى المستشفى، بما يضمن حصول المريض على رعاية طبية متخصصة في بيئة آمنة ومريحة."
     },
     booking: {
       title: "احجز خدمة متميزة",
