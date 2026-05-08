@@ -12,62 +12,30 @@ export default async function LandingPage() {
   let faqs: any[] = [];
 
   try {
-    const results = await Promise.all([
-      prisma.siteSettings.findUnique({ 
-        where: { id: 1 },
-        select: {
-          id: true,
-          primaryPhone: true,
-          whatsappLink: true,
-          supportEmail: true,
-          officeAddressEn: true,
-          officeAddressAr: true,
-          promoBannerTextEn: true,
-          promoBannerTextAr: true,
-          promoBannerActive: true
-        }
-      }),
-      prisma.service.findMany({
-        select: {
-          id: true,
-          titleEn: true,
-          titleAr: true,
-          descriptionEn: true,
-          descriptionAr: true,
-          iconLink: true
-        }
-      }),
-      prisma.testimonial.findMany({ 
-        orderBy: { rating: "desc" }, 
-        take: 3,
-        select: {
-          id: true,
-          clientName: true,
-          feedbackEn: true,
-          feedbackAr: true,
-          areaEn: true,
-          areaAr: true,
-          rating: true
-        }
-      }),
-      prisma.fAQ.findMany({
-        select: {
-          id: true,
-          questionEn: true,
-          questionAr: true,
-          answerEn: true,
-          answerAr: true
-        }
-      }),
-    ]);
-    
-    settings = results[0];
-    services = results[1] || [];
-    testimonials = results[2] || [];
-    faqs = results[3] || [];
-  } catch (error) {
-    console.error("Database connection failed during build or runtime:", error);
-  }
+    settings = await prisma.siteSettings.findUnique({ 
+      where: { id: 1 },
+      select: { id: true, primaryPhone: true, whatsappLink: true, supportEmail: true, officeAddressEn: true, officeAddressAr: true, promoBannerTextEn: true, promoBannerTextAr: true, promoBannerActive: true }
+    });
+  } catch (e) { console.error("Settings fetch error:", e); }
+
+  try {
+    services = await prisma.service.findMany({
+      select: { id: true, titleEn: true, titleAr: true, descriptionEn: true, descriptionAr: true, iconLink: true }
+    });
+  } catch (e) { console.error("Services fetch error:", e); }
+
+  try {
+    testimonials = await prisma.testimonial.findMany({ 
+      orderBy: { rating: "desc" }, take: 3,
+      select: { id: true, clientName: true, feedbackEn: true, feedbackAr: true, areaEn: true, areaAr: true, rating: true }
+    });
+  } catch (e) { console.error("Testimonials fetch error:", e); }
+
+  try {
+    faqs = await prisma.fAQ.findMany({
+      select: { id: true, questionEn: true, questionAr: true, answerEn: true, answerAr: true }
+    });
+  } catch (e) { console.error("FAQs fetch error:", e); }
 
   return (
     <LandingPageUI 
