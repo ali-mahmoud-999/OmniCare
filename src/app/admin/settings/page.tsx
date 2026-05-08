@@ -10,7 +10,11 @@ export default function SettingsPage() {
 
   useEffect(() => {
     getSettings().then((data) => {
-      if (data) setSettings(data);
+      try {
+        if (data) setSettings(data);
+      } catch (error) {
+        console.error("Database connection failed on settings page:", error);
+      }
       setLoading(false);
     });
   }, []);

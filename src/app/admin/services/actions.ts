@@ -6,16 +6,21 @@ import { revalidatePath } from "next/cache";
 const prisma = new PrismaClient();
 
 export async function getServices() {
-  return await prisma.service.findMany({
-    select: {
-      id: true,
-      titleEn: true,
-      titleAr: true,
-      descriptionEn: true,
-      descriptionAr: true,
-      iconLink: true
-    }
-  });
+  try {
+    return await prisma.service.findMany({
+      select: {
+        id: true,
+        titleEn: true,
+        titleAr: true,
+        descriptionEn: true,
+        descriptionAr: true,
+        iconLink: true
+      }
+    });
+  } catch (error) {
+    console.error("Database connection failed on getServices:", error);
+    return [];
+  }
 }
 
 export async function createService(data: { titleEn: string; titleAr: string; descriptionEn: string; descriptionAr: string; iconLink: string }) {

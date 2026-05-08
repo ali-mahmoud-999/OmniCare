@@ -6,15 +6,20 @@ import { revalidatePath } from "next/cache";
 const prisma = new PrismaClient();
 
 export async function getFAQs() {
-  return await prisma.fAQ.findMany({
-    select: {
-      id: true,
-      questionEn: true,
-      questionAr: true,
-      answerEn: true,
-      answerAr: true
-    }
-  });
+  try {
+    return await prisma.fAQ.findMany({
+      select: {
+        id: true,
+        questionEn: true,
+        questionAr: true,
+        answerEn: true,
+        answerAr: true
+      }
+    });
+  } catch (error) {
+    console.error("Database connection failed on getFAQs:", error);
+    return [];
+  }
 }
 
 export async function createFAQ(data: { questionEn: string; questionAr: string; answerEn: string; answerAr: string }) {

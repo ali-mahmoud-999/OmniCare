@@ -9,10 +9,10 @@ export default async function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-50 overflow-hidden">
       <AdminSidebar />
       <div className="flex-1 flex flex-col overflow-y-auto">
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 md:p-8">
           {children}
         </main>
       </div>
