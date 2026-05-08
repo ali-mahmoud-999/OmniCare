@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mail, MapPin, ChevronDown, Star, CheckCircle2, Menu, X, Shield, Heart, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, ChevronDown, Star, CheckCircle2, Menu, X, Shield, Heart } from "lucide-react";
 import { BookingForm } from "./BookingForm";
 import { useLanguage } from "@/components/LanguageProvider";
 import { translations } from "@/lib/translations";
@@ -331,7 +331,9 @@ export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
             rel="noreferrer"
             className="bg-[#1877F2] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
           >
-            <Facebook className="w-8 h-8 relative z-10" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative z-10">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
           </a>
         )}
         
