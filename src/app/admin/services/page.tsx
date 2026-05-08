@@ -16,13 +16,12 @@ export default function ServicesPage() {
   }, []);
 
   const fetchServices = async () => {
-    let services: any[] = [];
-  try {
-    services = await getServices();
-  } catch (error) {
-    console.error("Database connection failed on services page:", error);
-  };
-    setServices(services);
+    try {
+      const data = await getServices();
+      setServices(data || []);
+    } catch (error) {
+      console.error("Failed to fetch Services:", error);
+    }
   };
 
   const handleCreate = async (e: React.FormEvent) => {

@@ -15,15 +15,12 @@ export default function FAQsPage() {
   }, []);
 
   const fetchFAQs = async () => {
-    let faqs: any[] = [];
-  try {
-    faqs = await prisma.fAQ.findMany({
-      orderBy: { id: "asc" }
-    });
-  } catch (error) {
-    console.error("Database connection failed on faqs page:", error);
-  };
-    setFaqs(data);
+    try {
+      const data = await getFAQs();
+      setFaqs(data || []);
+    } catch (error) {
+      console.error("Failed to fetch FAQs:", error);
+    }
   };
 
   const handleCreate = async (e: React.FormEvent) => {

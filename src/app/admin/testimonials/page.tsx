@@ -19,7 +19,7 @@ export default function TestimonialsPage() {
   const fetchTestimonials = async () => {
     try {
       const data = await getTestimonials();
-      setTestimonials(data);
+      setTestimonials(data || []);
     } catch (error) {
       console.error("Database connection failed on testimonials page:", error);
     }
