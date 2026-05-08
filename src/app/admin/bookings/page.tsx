@@ -6,9 +6,14 @@ import { BookingsTable } from "./BookingsTable"
 const prisma = new PrismaClient()
 
 export default async function BookingsPage() {
-  const bookings = await prisma.booking.findMany({
-    orderBy: { createdAt: "desc" }
-  })
+  let bookings: any[] = [];
+  try {
+    bookings = await prisma.booking.findMany({
+      orderBy: { createdAt: "desc" }
+    });
+  } catch (error) {
+    console.error("Database connection failed on bookings page:", error);
+  }
 
   return (
     <div className="max-w-6xl mx-auto">

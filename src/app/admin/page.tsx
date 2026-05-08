@@ -7,12 +7,25 @@ import { seedDatabase } from "./actions"
 const prisma = new PrismaClient()
 
 export default async function AdminDashboard() {
-  const [bookingsCount, testimonialsCount, faqsCount, servicesCount] = await Promise.all([
-    prisma.booking.count(),
-    prisma.testimonial.count(),
-    prisma.fAQ.count(),
-    prisma.service.count()
-  ])
+  let bookingsCount = 0;
+  let testimonialsCount = 0;
+  let faqsCount = 0;
+  let servicesCount = 0;
+
+  try {
+    const results = await Promise.all([
+      prisma.booking.count(),
+      prisma.testimonial.count(),
+      prisma.fAQ.count(),
+      prisma.service.count()
+    ]);
+    bookingsCount = results[0];
+    testimonialsCount = results[1];
+    faqsCount = results[2];
+    servicesCount = results[3];
+  } catch (error) {
+    console.error("Database connection failed on admin dashboard:", error);
+  }
 
   const stats = [
     { name: "Total Bookings", value: bookingsCount, icon: CalendarCheck, color: "text-blue-600", bg: "bg-blue-100" },
