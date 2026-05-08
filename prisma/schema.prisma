@@ -44,6 +44,15 @@ model Service {
   featuresAr    String[]
 }
 
+model Specialty {
+  id            String   @id @default(uuid())
+  titleEn       String
+  titleAr       String   @default("")
+  descriptionEn String
+  descriptionAr String   @default("")
+  imageUrl      String?
+}
+
 model Testimonial {
   id         String @id @default(uuid())
   clientName String

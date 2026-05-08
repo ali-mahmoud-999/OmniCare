@@ -18,11 +18,18 @@ export default async function LandingPage() {
     });
   } catch (e) { console.error("Settings fetch error:", e); }
 
+  let specialties: any[] = [];
   try {
     services = await prisma.service.findMany({
-      select: { id: true, titleEn: true, titleAr: true, descriptionEn: true, descriptionAr: true, iconLink: true }
+      select: { id: true, titleEn: true, titleAr: true, descriptionEn: true, descriptionAr: true, iconLink: true, imageUrl: true, featuresEn: true, featuresAr: true }
     });
   } catch (e) { console.error("Services fetch error:", e); }
+
+  try {
+    specialties = await prisma.specialty.findMany({
+      select: { id: true, titleEn: true, titleAr: true, descriptionEn: true, descriptionAr: true, imageUrl: true }
+    });
+  } catch (e) { console.error("Specialties fetch error:", e); }
 
   try {
     testimonials = await prisma.testimonial.findMany({ 
@@ -41,6 +48,7 @@ export default async function LandingPage() {
     <LandingPageUI 
       settings={settings} 
       services={services} 
+      specialties={specialties}
       testimonials={testimonials} 
       faqs={faqs} 
     />

@@ -180,7 +180,6 @@ export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
             {services.map((service: any, index: number) => {
               const title = language === "ar" ? service.titleAr || service.titleEn : service.titleEn;
               const description = language === "ar" ? service.descriptionAr || service.descriptionEn : service.descriptionEn;
-              const features = language === "ar" ? service.featuresAr || service.featuresEn || [] : service.featuresEn || [];
               const defaultImages = [
                 "https://images.unsplash.com/photo-1576091160550-2173ff9e5ee4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -189,27 +188,15 @@ export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
               const imageUrl = service.imageUrl || defaultImages[index % 3];
 
               return (
-                <motion.div key={service.id} variants={fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
+                <motion.div key={service.id} variants={fadeIn} className="bg-white rounded-xl overflow-hidden shadow border border-gray-100 transition-shadow duration-300 group flex flex-col">
                   <div className="h-64 overflow-hidden relative">
                     <img src={imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent" />
-                    <h3 className="absolute bottom-4 left-6 right-6 text-2xl font-playfair font-bold text-white">{title}</h3>
                   </div>
-                  <div className="p-8 flex flex-col flex-grow">
-                    <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{description}</p>
+                  <div className="p-8 flex flex-col flex-grow text-center">
+                    <h3 className="text-2xl font-bold text-navy mb-4">{title}</h3>
+                    <p className="text-[#5176A6] leading-relaxed mb-6 flex-grow">{description}</p>
                     
-                    {features && features.length > 0 && (
-                      <ul className="space-y-3 mb-8 border-t border-gray-100 pt-6">
-                        {features.map((feature: string, idx: number) => (
-                          <li key={idx} className="flex items-start">
-                            <CheckCircle2 className="w-5 h-5 text-gold mr-3 rtl:ml-3 rtl:mr-0 shrink-0 mt-0.5" />
-                            <span className="text-gray-700 text-sm">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    
-                    <a href="#book" className="mt-auto block w-full text-center py-3 border-2 border-navy text-navy font-bold rounded hover:bg-navy hover:text-white transition-colors">
+                    <a href="#book" className="mt-auto inline-block border-2 border-navy text-navy font-bold rounded hover:bg-navy hover:text-white transition-colors px-6 py-2 w-max mx-auto">
                       Book Service
                     </a>
                   </div>
@@ -219,6 +206,52 @@ export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
           </motion.div>
         </div>
       </section>
+
+      {/* Specialties Section */}
+      {specialties && specialties.length > 0 && (
+        <section id="specialties" className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeIn}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-navy mb-6">التخصصات</h2>
+              <p className="text-gray-500 max-w-4xl mx-auto leading-relaxed text-lg" dir="rtl">
+                خدمات الزيارات الطبية المتخصصة داخل المنزل من خلال نخبة من الأطباء والاستشاريين في عدد من أهم التخصصات الطبية، وذلك لتقديم تشخيص دقيق ومتابعة طبية مهنية دون الحاجة لانتقال المريض إلى المستشفى، بما يضمن حصول المريض على رعاية طبية متخصصة في بيئة آمنة ومريحة.
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {specialties.map((specialty: any) => {
+                const title = language === "ar" ? specialty.titleAr || specialty.titleEn : specialty.titleEn;
+                const description = language === "ar" ? specialty.descriptionAr || specialty.descriptionEn : specialty.descriptionEn;
+                const imageUrl = specialty.imageUrl || "https://images.unsplash.com/photo-1576091160550-2173ff9e5ee4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+
+                return (
+                  <motion.div key={specialty.id} variants={fadeIn} className="flex flex-col mb-8">
+                    <div className="h-56 overflow-hidden mb-6 rounded-md shadow-sm">
+                      <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-grow text-center px-4">
+                      <h3 className="text-xl font-bold text-navy mb-4">{title}</h3>
+                      <p className="text-[#5176A6] text-sm leading-relaxed">{description}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Bookings & Testimonials Section */}
       <section id="book" className="py-24 bg-white relative">
