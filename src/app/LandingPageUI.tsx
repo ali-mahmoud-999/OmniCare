@@ -20,7 +20,7 @@ const staggerContainer: any = {
   }
 };
 
-export function LandingPageUI({ settings, services, testimonials, faqs }: any) {
+export function LandingPageUI({ settings, services, specialties, testimonials, faqs }: any) {
   const { language, setLanguage, dir } = useLanguage();
   const t = translations[language];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
