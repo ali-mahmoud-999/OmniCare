@@ -141,17 +141,17 @@ export function LandingPageUI({ settings, services, specialties, testimonials, f
         <div className="flex flex-col md:flex-row justify-around items-center gap-6 px-6">
           <div className="flex items-center gap-3 text-navy font-medium">
             <Shield className="w-8 h-8 text-gold" />
-            <span>Certified & Vetted Professionals</span>
+            <span>{t.trustBanner.certified}</span>
           </div>
           <div className="hidden md:block w-px h-10 bg-gray-200"></div>
           <div className="flex items-center gap-3 text-navy font-medium">
             <CheckCircle2 className="w-8 h-8 text-gold" />
-            <span>24/7 Availability in Greater Cairo</span>
+            <span>{t.trustBanner.availability}</span>
           </div>
           <div className="hidden md:block w-px h-10 bg-gray-200"></div>
           <div className="flex items-center gap-3 text-navy font-medium">
             <Heart className="w-8 h-8 text-gold" />
-            <span>Absolute Discretion & Privacy</span>
+            <span>{t.trustBanner.privacy}</span>
           </div>
         </div>
       </section>
@@ -178,8 +178,8 @@ export function LandingPageUI({ settings, services, specialties, testimonials, f
             className="grid grid-cols-1 md:grid-cols-3 gap-10"
           >
             {services.map((service: any, index: number) => {
-              const title = language === "ar" ? service.titleAr || service.titleEn : service.titleEn;
-              const description = language === "ar" ? service.descriptionAr || service.descriptionEn : service.descriptionEn;
+              const title = language === "ar" ? service.titleAr || service.titleEn : service.titleEn || service.titleAr;
+              const description = language === "ar" ? service.descriptionAr || service.descriptionEn : service.descriptionEn || service.descriptionAr;
               const defaultImages = [
                 "https://images.unsplash.com/photo-1576091160550-2173ff9e5ee4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -232,8 +232,8 @@ export function LandingPageUI({ settings, services, specialties, testimonials, f
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {specialties.map((specialty: any) => {
-                const title = language === "ar" ? specialty.titleAr || specialty.titleEn : specialty.titleEn;
-                const description = language === "ar" ? specialty.descriptionAr || specialty.descriptionEn : specialty.descriptionEn;
+                const title = language === "ar" ? specialty.titleAr || specialty.titleEn : specialty.titleEn || specialty.titleAr;
+                const description = language === "ar" ? specialty.descriptionAr || specialty.descriptionEn : specialty.descriptionEn || specialty.descriptionAr;
                 const imageUrl = specialty.imageUrl || "https://images.unsplash.com/photo-1576091160550-2173ff9e5ee4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
 
                 return (

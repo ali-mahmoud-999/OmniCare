@@ -15,6 +15,11 @@ export const translations = {
       whatsappBtn: "Chat on WhatsApp",
       badge: "Trusted Excellence"
     },
+    trustBanner: {
+      certified: "Certified & Vetted Professionals",
+      availability: "24/7 Availability in Greater Cairo",
+      privacy: "Absolute Discretion & Privacy"
+    },
     services: {
       title: "Our Core Services"
     },
@@ -67,6 +72,11 @@ export const translations = {
       bookBtn: "احجز خدمة متميزة",
       whatsappBtn: "تواصل عبر واتساب",
       badge: "التميز الموثوق"
+    },
+    trustBanner: {
+      certified: "محترفون معتمدون وموثوقون",
+      availability: "متاح 24/7 في القاهرة الكبرى",
+      privacy: "خصوصية وسرية تامة"
     },
     services: {
       title: "خدماتنا الأساسية"
