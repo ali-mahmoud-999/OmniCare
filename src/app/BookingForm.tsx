@@ -18,6 +18,16 @@ export function BookingForm({ services, whatsappLink }: { services: any[], whats
     
     try {
       await submitBooking(formData)
+      
+      // Fire Meta Pixel Lead event
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq('track', 'Lead', {
+          content_name: formData.get('selectedService'),
+          content_category: 'Service Booking',
+          status: 'Submitted'
+        });
+      }
+
       setSubmitted(true)
       
       // Redirect to WhatsApp as fallback after 2 seconds
